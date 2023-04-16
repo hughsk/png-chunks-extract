@@ -5,6 +5,7 @@ node_modules
 bundle.js
 test
 test.js
+test.png
 demo/
 .npmignore
 LICENSE.md
