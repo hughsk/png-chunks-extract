@@ -30,9 +30,15 @@ function extractChunks (data) {
     uint8[2] = data[idx++]
     uint8[1] = data[idx++]
     uint8[0] = data[idx++]
+    var length = uint32[0] + 4
+
+    // The length can't be too long.
+    var maxLength = data.length - idx + 8
+    if (length > maxLength) {
+      throw new Error('Length is too large')
+    }
 
     // Chunk includes name/type for CRC check (see below).
-    var length = uint32[0] + 4
     var chunk = new Uint8Array(length)
     chunk[0] = data[idx++]
     chunk[1] = data[idx++]
